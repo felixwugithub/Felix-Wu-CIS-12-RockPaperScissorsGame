@@ -52,7 +52,7 @@ public class RPS {
         int difference = INPUT - ComputerMovePlus1;
 
         if(INPUT == ComputerMovePlus1){
-            System.out.println("YOU Tie");
+            System.out.println(" Tie");
         }else if(difference == 1 || difference == -2){
             System.out.println(" YOU Win");
         }else if(difference == -1 || difference == 2){

@@ -46,6 +46,7 @@ public class RPS {
         while(true){
             INPUT = (int) inputChoice();
        if(INPUT > RPS.size() || INPUT < 1){
+           //if the integer does not correspond to a correct action, the program asks them to try again
            System.out.println("Error 2: Unavailable Choice --- Please enter a number between 1 to 3, inclusive. ");
        }else{
            //when the user enters a valid value, proceed onto the next step
@@ -64,11 +65,11 @@ public class RPS {
 
 
         if(INPUT == ComputerMovePlus1){                 //obviously if they make the same move it's a tie.
-            System.out.println(" Tie");
+            System.out.println("TIE");
         }else if((difference-1)% 3 == 0){                //a brilliant equation that determines whether the player wins or not.
-            System.out.println(" YOU Win");
+            System.out.println("YOU WIN");
         }else if((difference+1)% 3 == 0){                //However,these equations assume that each action in the arraylist is placed after the action that it beats, and the last action defeats the first.
-            System.out.println("YOU Lose");
+            System.out.println("YOU LOSE");
         }else{
             System.out.println("Error 3: This Error is not Logically possible.");
         }

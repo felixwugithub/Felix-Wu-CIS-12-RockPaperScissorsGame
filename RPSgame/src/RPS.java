@@ -3,7 +3,8 @@ import java.util.Scanner;
 
 public class RPS {
 
-    private static double inputChoice() {   //A while loop that catches invalid inputs and re-prompt the user until a valid input is entered.
+    //A while loop that catches invalid inputs and re-prompt the user until a valid input is entered, because people do stupid things.
+    private static double inputChoice() {
         Scanner input = new Scanner(System.in);
         while (true) {
             System.out.println("Your Move? --> ");
@@ -11,7 +12,8 @@ public class RPS {
             try {
                 return input.nextInt();
             }
-            catch (java.util.InputMismatchException e) { //if the user fails to input an int, then the error will be caught and it will print the following error message
+            //if the user fails to input an int, then the error will be caught, and it will print an error message and allow them to retry.
+            catch (java.util.InputMismatchException e) {
                 System.out.println("Error 1: Invalid Input --- Please try again and enter a Natural Number.");
                 input.nextLine();
             }
@@ -20,12 +22,13 @@ public class RPS {
 
     public static void main(String[] args) {
 
-        ArrayList<String> RPS = new ArrayList<String>();        //ArrayList of allowed actions, saving time for the print stuff
+        //ArrayList of allowed actions
+        ArrayList<String> RPS = new ArrayList<String>();
         RPS.add("Rock");
         RPS.add("Paper");
         RPS.add("Scissor");
 
-        System.out.println("_________________________________________________________"); //well, this part is obvious... ASCII art!
+        //well, this part is obvious... ASCII art!
         System.out.println("  _____          _   _          _           ____                   _        ____                                    ____           _                                  \n" +
                 " |  ___|   ___  | | (_) __  __ ( )  ___    |  _ \\    ___     ___  | | __   |  _ \\    __ _   _ __     ___   _ __    / ___|    ___  (_)  ___   ___    ___    _ __   ___ \n" +
                 " | |_     / _ \\ | | | | \\ \\/ / |/  / __|   | |_) |  / _ \\   / __| | |/ /   | |_) |  / _` | | '_ \\   / _ \\ | '__|   \\___ \\   / __| | | / __| / __|  / _ \\  | '__| / __|\n" +
@@ -34,9 +37,9 @@ public class RPS {
                 "                                                                                           |_|                                                                        ");
         System.out.println("Please choose your move by entering the corresponding number");
 
-
+        //for loop to print out each allowed action one by one.
         for (int i = 0; i < RPS.size() ; i++) {
-            System.out.println((i+1) + ") " + RPS.get(i)); //for loop to print out each allowed action one by one.
+            System.out.println((i+1) + ") " + RPS.get(i));
         }
 
         int INPUT = 0;
@@ -45,12 +48,13 @@ public class RPS {
        if(INPUT > RPS.size() || INPUT < 1){
            System.out.println("Error 2: Unavailable Choice --- Please enter a number between 1 to 3, inclusive. ");
        }else{
-           break; //when the user enters a valid value, proceed onto the next step
+           //when the user enters a valid value, proceed onto the next step
+           break;
        }
         }
         System.out.println("You've selected " + RPS.get(INPUT-1));
 
-        //stores an integer from 1 to 3, inclusive.
+        //stores a random integer from 1 to 3, inclusive. This is mapped to an action the same way the player's move is.
         int ComputerMove = (int) ((Math.random())*3);
         System.out.println("The Computer selected " + RPS.get(ComputerMove));
 
@@ -66,7 +70,7 @@ public class RPS {
         }else if((difference+1)% 3 == 0){                //However,these equations assume that each action in the arraylist is placed after the action that it beats, and the last action defeats the first.
             System.out.println("YOU Lose");
         }else{
-            System.out.println("Error 3: This Error is not possible.");
+            System.out.println("Error 3: This Error is not Logically possible.");
         }
 
 

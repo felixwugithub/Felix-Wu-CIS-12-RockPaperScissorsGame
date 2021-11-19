@@ -27,6 +27,7 @@ public class RPS {
 
         //while loops keep prompting the user until they provide a valid input.
         while(true) {
+            System.out.println("--------------------------------------");
             System.out.println("Would you like to keep playing? (Y/N) ");
             String INPUT2 = Play.next().toUpperCase();
 
@@ -67,7 +68,7 @@ public class RPS {
 
         do {
 
-            System.out.println("------------------------------------------------------------");
+            System.out.println("----------------===========================-------------------");
             System.out.println("Please choose your move by entering the corresponding number");
 
             //for loop to print out each allowed action one by one.

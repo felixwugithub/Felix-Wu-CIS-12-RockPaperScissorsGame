@@ -130,14 +130,18 @@ public class RPS {
 
 
         //simple win/loss/tie checks
+        System.out.println("\t");
+
+        System.out.print("    Y O U         ");
         if(playerScore < computerScore){
-            System.out.println("Nice try. You lost.");
+            System.out.println("L O S E");
         }else if(computerScore < playerScore){
-            System.out.println("Good Job. You won.");
+            System.out.println(" W I N");
         }else{
-            System.out.println("Wow. You tied.");
+            System.out.println("T I E");
         }
-        return; //end of program.
+
+        //end of program.
 
     }
 }

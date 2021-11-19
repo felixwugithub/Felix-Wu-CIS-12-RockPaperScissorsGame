@@ -3,6 +3,8 @@ import java.util.Scanner;
 
 public class RPS {
 
+    public static String error = "Invalid Input. Please Try again. ";
+
     //A while loop that catches invalid inputs and re-prompt the user until a valid input is entered, because people do stupid things.
     private static double inputChoice() {
         Scanner input = new Scanner(System.in);
@@ -14,11 +16,13 @@ public class RPS {
             }
             //if the user fails to input an int, then the error will be caught, and it will print an error message and allow them to retry.
             catch (java.util.InputMismatchException e) {
-                System.out.println("Error 1: Invalid Input --- Please try again and enter a Natural Number.");
+                System.out.println(error);
                 input.nextLine();
             }
         }
     }
+
+
 
     public static boolean inputContinue(){
 
@@ -26,6 +30,7 @@ public class RPS {
 
 
         //while loops keep prompting the user until they provide a valid input.
+
         while(true) {
             System.out.println("\t");
             System.out.println("--------------------------------------");
@@ -33,22 +38,23 @@ public class RPS {
             String INPUT2 = Play.next().toUpperCase();
 
             //checks if the player wants to keep playing.
+
             if (INPUT2.equals("Y") || INPUT2.equals("YES")) {
                 return true;
+
             } else if (INPUT2.equals("N") || INPUT2.equals("NO")) {
 
                 return false;
 
             } else {
                 //error message if they screw up
-                System.out.println("Error 3: Unrecognized Response --- Please input either Y or N. ");
+                System.out.println(error);
             }
         }
 
     }
 
     public static void main(String[] args) {
-
 
         //ArrayList of allowed actions
         ArrayList<String> RPS = new ArrayList<String>();
@@ -82,7 +88,7 @@ public class RPS {
                 INPUT = (int) inputChoice();
                 if (INPUT > RPS.size() || INPUT < 1) {
                     //if the integer does not correspond to a correct action, the program asks them to try again
-                    System.out.println("Error 2: Unavailable Choice --- Please enter a number between 1 to 3, inclusive. ");
+                    System.out.println(error);
                 } else {
                     //when the user enters a valid value, proceed onto the next step
                     break;
@@ -145,3 +151,4 @@ public class RPS {
 
     }
 }
+

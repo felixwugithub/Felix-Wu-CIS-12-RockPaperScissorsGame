@@ -20,9 +20,33 @@ public class RPS {
         }
     }
 
-    public static void main(String[] args) {
+    public static boolean inputContinue(){
 
         Scanner Play = new Scanner(System.in);
+
+
+        //while loops keep prompting the user until they provide a valid input.
+        while(true) {
+            System.out.println("Would you like to keep playing? (Y/N) ");
+            String INPUT2 = Play.next().toUpperCase();
+
+            //checks if the player wants to keep playing.
+            if (INPUT2.equals("Y") || INPUT2.equals("YES")) {
+                return true;
+            } else if (INPUT2.equals("N") || INPUT2.equals("NO")) {
+
+                return false;
+
+            } else {
+                //error message if they screw up
+                System.out.println("Error 3: Unrecognized Response --- Please input either Y or N. ");
+            }
+        }
+
+    }
+
+    public static void main(String[] args) {
+
 
         //ArrayList of allowed actions
         ArrayList<String> RPS = new ArrayList<String>();
@@ -40,7 +64,6 @@ public class RPS {
 
         int playerScore = 0;
        int computerScore = 0;
-       boolean continuePlaying = false;
 
         do {
 
@@ -93,35 +116,26 @@ public class RPS {
                 System.out.println("Computer score: " + computerScore);
             }
 
-            System.out.println(" --------------------- ");
-            System.out.println("Continue Playing? (Y/N)");
-            System.out.println(" --------------------- ");
-            String INPUT2 = Play.next().toUpperCase();
+        //a do-while loop that calls the function to ask the user if they want to keep playing. If they respond no then the function returns false and the
+            //statement evaluates to false, thus ending the loop. Otherwise, the game keeps going.
+        }while(inputContinue());
+
+        //the final message after the player no longer wants to play. Tallies up the wins and losses and provide a post game report.
+        System.out.println("Game Terminated. Final Score: \n" +
+                "Player: " + playerScore +
+                "  --------  " +
+                "Computer " + computerScore);
 
 
-            if(INPUT2.equals("Y")||INPUT2.equals("YES")){
-                continuePlaying = true;
-            }else if(INPUT2.equals("N")||INPUT2.equals("NO")){
-                System.out.print("Your score: " + playerScore + "  --  ");
-                System.out.println("Computer score: " + computerScore);
-                if(computerScore > playerScore){
-                    System.out.println("-----------------\nYou lost overall.\n------------");
-                }else if(playerScore > computerScore){
-                    System.out.println("------------\nYou won overall.\n-------------");
-                }else{
-                    System.out.println("It was a tie overall.");
-                }
-
-                continuePlaying = false;
-
-            }else{
-                System.out.println("All you had to do was enter Y or N. That's it. I'm not playing with you anymore, stupid human.");
-            }
-
-        }while(continuePlaying);
-
-
-
+        //simple win/loss/tie checks
+        if(playerScore < computerScore){
+            System.out.println("Nice try. You lost.");
+        }else if(computerScore < playerScore){
+            System.out.println("Good Job. You won.");
+        }else{
+            System.out.println("Wow. You tied.");
+        }
+        return; //end of program.
 
     }
 }

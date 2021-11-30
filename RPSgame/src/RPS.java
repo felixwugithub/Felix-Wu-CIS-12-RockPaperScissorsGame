@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+
 import java.util.Scanner;
 
 public class RPS {
@@ -57,10 +57,15 @@ public class RPS {
     public static void main(String[] args) {
 
         //ArrayList of allowed actions
-        ArrayList<String> RPS = new ArrayList<String>();
-        RPS.add("Rock");
-        RPS.add("Paper");
-        RPS.add("Scissor");
+//        ArrayList<String> RPS = new ArrayList<String>();
+//        RPS.add("Rock");
+//        RPS.add("Paper");
+//        RPS.add("Scissor");
+
+        String[] RPS = new String[3];
+        RPS[0] = "Rock";
+        RPS[1] = "Paper";
+        RPS[2] = "Scissor";
 
         //well, this part is obvious... ASCII art!
         System.out.println("  _____          _   _          _           ____                   _        ____                                    ____           _                                  \n" +
@@ -72,21 +77,25 @@ public class RPS {
 
         int playerScore = 0;
        int computerScore = 0;
+       int gameCount = 0;
 
         do {
+            gameCount++;
+
             System.out.println("\t");
+            System.out.println(" ROUND " + gameCount);
             System.out.println("----------------===========================-------------------");
             System.out.println("Please choose your move by entering the corresponding number");
 
             //for loop to print out each allowed action one by one.
-            for (int k = 0; k < RPS.size(); k++) {
-                System.out.println((k + 1) + ") " + RPS.get(k));
+            for (int k = 0; k < RPS.length; k++) {
+                System.out.println((k + 1) + ") " + RPS[k]);
             }
 
             int INPUT = 0;
             while (true) {
                 INPUT = (int) inputChoice();
-                if (INPUT > RPS.size() || INPUT < 1) {
+                if (INPUT > RPS.length || INPUT < 1) {
                     //if the integer does not correspond to a correct action, the program asks them to try again
                     System.out.println(error);
                 } else {
@@ -94,11 +103,11 @@ public class RPS {
                     break;
                 }
             }
-            System.out.print("You've selected " + RPS.get(INPUT - 1) + "  --  ");
+            System.out.print("You've selected " + RPS[INPUT - 1] + "  --  ");
 
             //stores a random integer from 1 to 3, inclusive. This is mapped to an action the same way the player's move is.
             int ComputerMove = (int) ((Math.random()) * 3);
-            System.out.println("The Computer selected " + RPS.get(ComputerMove));
+            System.out.println("The Computer selected " + RPS[ComputerMove]);
 
             int ComputerMovePlus1 = ComputerMove + 1; //to reduce index confusion
             int difference = INPUT - ComputerMovePlus1;
@@ -129,6 +138,7 @@ public class RPS {
         }while(inputContinue());
 
         //the final message after the player no longer wants to play. Tallies up the wins and losses and provide a post game report.
+        System.out.println("Rounds played: " + gameCount);
         System.out.println("Game Terminated. Final Score: \n" +
                 "Player: " + playerScore +
                 "  --------  " +
@@ -137,6 +147,7 @@ public class RPS {
 
         //simple win/loss/tie checks
         System.out.println("\t");
+
 
         System.out.print("    Y O U         ");
         if(playerScore < computerScore){
